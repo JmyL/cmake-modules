@@ -20,25 +20,20 @@ function(add_proto_target TARGET_NAME PROTO_FILE)
         COMMAND ${_PROTOBUF_PROTOC}
         ARGS
             --grpc_out=${CMAKE_CURRENT_BINARY_DIR}
-            --cpp_out=${CMAKE_CURRENT_BINARY_DIR}
-            -I ${PROTO_DIR}
-            --plugin=protoc-gen-grpc=${_GRPC_CPP_PLUGIN_EXECUTABLE}
-            ${PROTO_ABS}
+            --cpp_out=${CMAKE_CURRENT_BINARY_DIR} -I ${PROTO_DIR}
+            --plugin=protoc-gen-grpc=${_GRPC_CPP_PLUGIN_EXECUTABLE} ${PROTO_ABS}
         DEPENDS ${PROTO_ABS}
         COMMENT "Generating C++ code from ${PROTO_FILE}"
         VERBATIM
     )
 
-    add_library(${TARGET_NAME} STATIC ${GEN_SRC} ${GEN_GRPC_SRC})
+    add_library(${TARGET_NAME} ${GEN_SRC} ${GEN_GRPC_SRC})
     target_include_directories(
         ${TARGET_NAME}
         PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
     )
     target_link_libraries(
         ${TARGET_NAME}
-        PUBLIC
-            gRPC::grpc++_reflection
-            gRPC::grpc++
-            protobuf::libprotobuf
+        PUBLIC gRPC::grpc++_reflection gRPC::grpc++ protobuf::libprotobuf
     )
 endfunction()

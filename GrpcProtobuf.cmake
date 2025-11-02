@@ -37,7 +37,6 @@ function(add_proto_target TARGET_NAME PROTO_FILE)
     target_link_libraries(
         ${TARGET_NAME}
         PUBLIC
-            absl::check
             gRPC::grpc++_reflection
             gRPC::grpc++
             protobuf::libprotobuf

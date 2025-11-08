@@ -13,3 +13,4 @@ set(CMAKE_CUDA_HOST_COMPILER
 )
 enable_language(CUDA) # Enables CUDA language support
 include_directories(${CUDAToolkit_INCLUDE_DIRS})
+set(CMAKE_CUDA_SEPARABLE_COMPILATION ON)

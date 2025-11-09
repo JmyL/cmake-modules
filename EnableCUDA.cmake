@@ -19,3 +19,6 @@ set(CMAKE_CUDA_SEPARABLE_COMPILATION ON)
 
 # See https://github.com/clangd/clangd/discussions/1676
 set(CMAKE_CUDA_USE_RESPONSE_FILE_FOR_INCLUDES 0)
+
+# See https://cmake.org/cmake/help/latest/prop_tgt/CUDA_ARCHITECTURES.html
+set(CMAKE_CUDA_ARCHITECTURES native)

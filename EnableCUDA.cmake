@@ -13,6 +13,7 @@ set(CMAKE_CUDA_HOST_COMPILER
 )
 enable_language(CUDA) # Enables CUDA language support
 include_directories(${CUDAToolkit_INCLUDE_DIRS})
+add_compile_options($<$<COMPILE_LANGUAGE:CUDA>:-lineinfo>)
 
 # See https://developer.nvidia.com/blog/separate-compilation-linking-cuda-device-code/
 set(CMAKE_CUDA_SEPARABLE_COMPILATION ON)

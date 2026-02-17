@@ -1,5 +1,3 @@
-find_package(Doxygen REQUIRED)
-
 include(FetchContent)
 FetchContent_Declare(
     doxygen-awesome-css
@@ -9,6 +7,16 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(doxygen-awesome-css)
 
 function(add_doxygen target input)
+    find_package(Doxygen)
+
+    if(NOT DOXYGEN_FOUND)
+        message(
+            WARNING
+            "Doxygen not found! Documentation target will not be created."
+        )
+        return()
+    endif()
+
     set(NAME "doxygen-${target}")
     set(DOXYGEN_HTML_OUTPUT ${PROJECT_BINARY_DIR}/${NAME})
     set(DOXYGEN_GENERATE_HTML YES)

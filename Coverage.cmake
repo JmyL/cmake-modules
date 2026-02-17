@@ -14,8 +14,21 @@ function(clean_coverage target)
 endfunction()
 
 function(add_coverage target)
-    find_program(LCOV_PATH lcov REQUIRED)
-    find_program(GENHTML_PATH genhtml REQUIRED)
+    find_program(LCOV_PATH lcov)
+    if(NOT LCOV_PATH)
+        message(WARNING "lcov not found! Coverage target will not be created.")
+        return()
+    endif()
+
+    find_program(GENHTML_PATH genhtml)
+    if(NOT GENHTML_PATH)
+        message(
+            WARNING
+            "genhtml not found! Coverage target will not be created."
+        )
+        return()
+    endif()
+
     add_custom_target(
         coverage-${target}
         COMMAND ${LCOV_PATH} -d . --zerocounters

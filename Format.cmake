@@ -1,5 +1,9 @@
 function(format target directory)
-    find_program(CLANG-FORMAT_PATH clang-format REQUIRED)
+    find_program(CLANGFORMAT_PATH clang-format)
+    if(NOT CLANGFORMAT_PATH)
+        message(WARNING "clang-format not found! Format target will not work.")
+        return()
+    endif()
     set(EXPRESSION
         h
         hpp
@@ -19,6 +23,6 @@ function(format target directory)
     add_custom_command(
         TARGET ${target}
         PRE_BUILD
-        COMMAND ${CLANG-FORMAT_PATH} -i --style=file ${SOURCE_FILES}
+        COMMAND ${CLANGFORMAT_PATH} -i --style=file ${SOURCE_FILES}
     )
 endfunction()

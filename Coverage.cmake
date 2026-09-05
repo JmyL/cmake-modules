@@ -47,7 +47,7 @@ function(add_coverage target)
         )
         set(LCOV_TOOL_ARGS
             --gcov-tool "${LLVM_GCOV_PATH}"
-            --ignore-errors mismatch,version,inconsistent
+            --ignore-errors mismatch,version,inconsistent,unused
         )
         set(GENHTML_TOOL_ARGS --ignore-errors inconsistent)
     else()

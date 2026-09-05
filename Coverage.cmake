@@ -38,7 +38,7 @@ function(add_coverage target)
 
         set(LLVM_GCOV_PATH "${CMAKE_BINARY_DIR}/llvm-gcov")
         file(WRITE "${LLVM_GCOV_PATH}"
-            "#!/bin/sh\nexec \"${LLVM_COV_PATH}\" gcov \"\\$@\"\n"
+            "#!/bin/sh\nexec \"${LLVM_COV_PATH}\" gcov \"$@\"\n"
         )
         file(CHMOD "${LLVM_GCOV_PATH}" PERMISSIONS
             OWNER_READ OWNER_WRITE OWNER_EXECUTE
